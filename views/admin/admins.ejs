@@ -1,0 +1,78 @@
+<%- include('includes/headers.ejs') %>
+    </head>
+
+    <body>
+        <%- include('includes/navigation.ejs') %>
+            </nav>
+            <!-- Header -->
+            <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+            <!-- Page content -->
+            <div class="container-fluid mt--7"></div>
+            <div class="row mt-5">
+                <div class="col-xl-12 mb-5 mb-xl-0">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h3 class="mb-0">Moderators</h3>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="/admin/createUser" class="btn btn-sm btn-primary">Create New Moderator</a>
+                                    <a href="#!" class="btn btn-sm btn-success">Data Summary</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% if (admins.length > 0){%>
+                            <div class="table-responsive">
+                                <!-- Projects table -->
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Moderator name</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Member Since</th>
+                                            <th scope="col">Clearance</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <% for(let admin of admins){ %>
+
+
+                                            <tr>
+                                                <th scope="row">
+                                                    <a href="/admin/adminProfile/<%=admin.id%>">
+                                                        <%=admin.firstName%>
+                                                            <%=admin.lastName%>
+                                                    </a>
+                                                </th>
+                                                <td>
+                                                    <%=admin.address%>
+                                                </td>
+                                                <td>
+                                                    <%= admin.registeredOn%>
+                                                </td>
+                                                <td>
+                                                    <i class="fas fa-arrow-up text-success mr-3"></i>
+                                                    <%= admin.userType%>
+                                                </td>
+                                            </tr>
+
+
+                                            <%}%>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <% } else {%>
+                                <h1>You Have No Administrators</h1>
+                                <%}%>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- Footer -->
+            <%- include('includes/end.ejs') %>
+
+                </html>

@@ -1,0 +1,75 @@
+<%- include('includes/headers.ejs') %>
+    </head>
+
+    <body>
+        <%- include('includes/navigation.ejs') %>
+            </nav>
+            <!-- Header -->
+            <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+            <!-- Page content -->
+            <div class="container-fluid mt--7"></div>
+            <div class="row mt-5">
+                <div class="col-xl-12 mb-5 mb-xl-0">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h3 class="mb-0">Customers</h3>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="/admin/createUser" class="btn btn-sm btn-primary">Create New Customer</a>
+                                    <a href="#!" class="btn btn-sm btn-success">Data Summary</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% if (customers.length > 0){%>
+                            <div class="table-responsive">
+                                <!-- Projects table -->
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Customer name</th>
+                                            <th scope="col">Location</th>
+                                            <th scope="col">Member Since</th>
+                                            <th scope="col">Amount Spent</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <% for(let customer of customers){ %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <a href="/admin/profile/<%=customer.id%>">
+                                                        <%=customer.firstName%>
+                                                            <%=customer.lastName%>
+                                                    </a>
+                                                </th>
+                                                <td>
+
+                                                    <%=customer.address%>
+                                                </td>
+                                                <td>
+                                                    <%= customer.registeredOn%>
+                                                        <!-- 3rd Jan, 2018 -->
+                                                </td>
+                                                <td>
+                                                    <i class="fas fa-arrow-up text-success mr-3"></i> CAD$ 455.50
+                                                </td>
+                                            </tr>
+                                            <%}%>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <% } else {%>
+                                <h1>No Customers Available</h1>
+                                <%}%>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- Footer -->
+            <%- include('includes/end.ejs') %>
+
+                </html>

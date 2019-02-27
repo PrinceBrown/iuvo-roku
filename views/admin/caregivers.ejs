@@ -1,0 +1,77 @@
+<%- include('includes/headers.ejs') %>
+    </head>
+
+    <body>
+        <%- include('includes/navigation.ejs') %>
+            </nav>
+            <!-- Header -->
+            <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+
+            <!-- Page content -->
+            <div class="container-fluid mt--7"></div>
+
+
+            <div class="row mt-5">
+                <div class="col-xl-12 mb-5 mb-xl-0">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h3 class="mb-0">Caregivers</h3>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="/admin/createUser" class="btn btn-sm btn-primary">Create New Caregiver</a>
+                                    <a href="#!" class="btn btn-sm btn-success">Data Summary</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <!-- Projects table -->
+
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Customer name</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Member Since</th>
+                                        <th scope="col">Earnings</th>
+                                    </tr>
+                                </thead>
+                                <% if(caregivers.length > 0){%>
+                                    <tbody>
+                                        <%for(let caregiver of caregivers){%>
+                                            <tr>
+                                                <th scope="row">
+                                                    <a href="/admin/caregiver/<%=caregiver.id%>">
+                                                        <%=caregiver.firstName%>
+                                                            <%=caregiver.lastName%>
+                                                    </a>
+                                                </th>
+                                                <td>
+                                                    <%=caregiver.address%>
+                                                </td>
+                                                <td>
+                                                    <%=caregiver.registeredOn%>
+                                                </td>
+                                                <td>
+                                                    <i class="fas fa-arrow-up text-success mr-3"></i> CAD$ 455.50
+                                                </td>
+                                            </tr>
+                                            <%}%>
+                                    </tbody>
+                                    <% } else{%>
+                                        <h1>Nothing To Display!</h1>
+                                        <%}%>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!-- Footer -->
+            <%- include('includes/end.ejs') %>
+
+                </html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login V13</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../../customerAssets/edit-profile/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../../customerAssets/edit-profile/css/main.css">
+
+    <style>
+        @media only screen and (max-width: 600px) {
+            #quotes {
+                display: none;
+            }
+        }
+    </style>
+    <!--===============================================================================================-->
+</head>
+
+<body style="background-color: #999999;">
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="login100-more" style="background-image: url('../../customerAssets/edit-profile/images/bg-01.jpg');">
+                <div id="quotes" class="container">
+
+                    <p class="text-info m-1">
+                        Nobody can predict the future. You just have to give your all to the relationship you're in and do your best to take care of your partner, communicate and give them every last drop of love you have. I think one of the most important things in a relationship
+                        is caring for your significant other through good times and bad. - Nick Canon
+                    </p>
+
+                    <p class="text-success m-1">
+                        Too often we underestimate the power of a touch, a smile, a kind word, a listening ear, an honest compliment, or the smallest act of caring, all of which have the potential to turn a life around. - Leo Buscagalia
+                    </p>
+                    <p class="text-warning m-1">
+                        My smile has been my ticket to the world. Smiling releases the same feel-good hormones you get jogging. Caring for your lips and gums is important. I brush my teeth morning and night, alternating toothpaste brands. In addition to flossing, I use a Water
+                        Pik to massage my gums and remove food particles. - Christie Brinkley
+                    </p>
+                    <p class="text-danger m-1">
+                        There is no better feeling than doing well while you are doing good. If you really want to meet the nicest, most caring people in your field, get involved with charity work. The thankless hours that go into planning charity dinners, running a carnival,
+                        and gathering donations for silent auctions are noticed and appreciated. - Jay Samit
+                    </p>
+                    <p class="text-primary m-1">
+
+                        As a person, he was wonderful. He really was a great person. He was full of life. He had a great sense of humor. Very talented, of course, but very caring to his parents. There was a very endearing quality about Elvis. - Priscilla Presley
+                    </p>
+                    <p class="text-success m-1">
+
+                        Ice cream is the perfect buffer, because you can do things in a somewhat lighthearted way. Plus, people have an emotional response to ice cream; it's more than just food. So I think when you combine caring, and eating wonderful food, it's a very powerful
+                        combination. - Jay Greenfield
+                    </p>
+                    <p class="text-warning m-1">
+                        I've never made a penny being a doctor, so that makes it not a job. My sense of a doctor is that one is a presence caring for health. So I'm never not a doctor. People call me from all over the world who are hurting, and I care for them. Chatting is what
+                        more people want than anything. - Patch Adams
+                    </p>
+                </div>
+            </div>
+
+            <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+                <form action="/myAccount" method="POST" class="login100-form validate-form">
+                    <span class="login100-form-title p-b-59">
+                        Edit Profile
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="First Name is required">
+                        <span class="label-input100">First Name</span>
+                        <input class="input100" type="text" name="firstName" placeholder="First Name...">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Last Name is required">
+                        <span class="label-input100">Last Name</span>
+                        <input class="input100" type="text" name="lastName" placeholder="Last Name...">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class=" wrap-input100 validate-input " data-validate=" Valid Canadian Address is required ">
+                        <span class=" label-input100 ">Address</span>
+                        <input class=" input100 " type=" text " name=" address " placeholder=" Home address... ">
+                        <span class=" focus-input100 "></span>
+                    </div>
+
+
+                    <div class=" wrap-input100 validate-input " data-validate=" Valid email is required: ex@abc.xyz ">
+                        <span class=" label-input100 ">Email</span>
+                        <input class=" input100 " type=" text " name=" email " placeholder=" Email addess... ">
+                        <span class=" focus-input100 "></span>
+                    </div>
+
+
+
+                    <div class=" wrap-input100 validate-input " data-validate=" Password is required ">
+                        <span class=" label-input100 ">Password</span>
+                        <input class=" input100 " type=" text " name=" password " placeholder=" ************* ">
+                        <span class=" focus-input100 "></span>
+                    </div>
+
+                    <div class=" wrap-input100 validate-input " data-validate=" Repeat Password is required ">
+                        <span class=" label-input100 ">Repeat Password</span>
+                        <input class=" input100 " type=" text " name=" confirm_password " placeholder=" ************* ">
+                        <span class=" focus-input100 "></span>
+                    </div>
+
+                    <!-- <div class=" flex-m w-full p-b-33 ">
+                        <div class=" contact100-form-checkbox ">
+                            <input required class=" input-checkbox100 " id=" ckb1 " type=" checkbox " name=" remember-me ">
+                            <label class=" label-checkbox100 " for=" ckb1 ">
+                                <span class=" txt1 ">
+                                    I agree to the
+                                    <a href="/terms " class=" txt2 hov1 ">
+                                        Terms of User
+                                    </a>
+                                </span>
+                            </label>
+                        </div>
+
+
+                    </div> -->
+
+                    <div class=" container-login100-form-btn ">
+                        <div class=" wrap-login100-form-btn ">
+                            <div class=" login100-form-bgbtn "></div>
+                            <button class=" login100-form-btn ">
+                                Done
+                            </button>
+                        </div>
+
+                        <a href="/myAccount " class=" dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30 ">
+                            Cancel
+                            <i class=" fa fa-long-arrow-right m-l-5 "></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src=" ../../customerAssets/edit-profile/vendor/jquery/jquery-3.2.1.min.js "></script>
+    <!--===============================================================================================-->
+    <script src=" ../../customerAssets/edit-profile/vendor/animsition/js/animsition.min.js "></script>
+    <!--===============================================================================================-->
+    <script src=" ../../customerAssets/edit-profile/vendor/bootstrap/js/popper.js "></script>
+    <script src=" ../../customerAssets/edit-profile/vendor/bootstrap/js/bootstrap.min.js "></script>
+    <!--===============================================================================================-->
+    <script src=" ../../customerAssets/edit-profile/vendor/select2/select2.min.js "></script>
+    <!--===============================================================================================-->
+    <script src=" ../../customerAssets/edit-profile/vendor/daterangepicker/moment.min.js "></script>
+    <script src=" ../../customerAssets/edit-profile/vendor/daterangepicker/daterangepicker.js "></script>
+    <!--===============================================================================================-->
+    <script src=" ../../customerAssets/edit-profile/vendor/countdowntime/countdowntime.js "></script>
+    <!--===============================================================================================-->
+    <script src=" ../../customerAssets/edit-profile/js/main.js "></script>
+
+</body>
+
+</html>
