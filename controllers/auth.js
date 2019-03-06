@@ -187,7 +187,7 @@ exports.postCaregiverLogin = (req, res, next) => {
 exports.getAdminRegister = (req, res, next) => {
     res.render('Login_register/register', {
         pageTitle: 'Create Account',
-        isAuthenticated: req.isLoggedIn
+       
     })
 }
 
@@ -233,7 +233,7 @@ exports.postAdminRegister = (req, res, next) => {
 exports.getAdminLogin = (req, res, next) => {
     res.render('Login_register/login', {
         pageTitle: 'Sign into your account',
-        isAuthenticated: req.isLoggedIn
+        
     })
 }
 

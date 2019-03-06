@@ -4,33 +4,27 @@ const Schema = mongoose.Schema;
 const AdminSchema = Schema({
     username: {
         type: String,
-        trim: true,
-        minlength: 2
+
+    },
+    googleId: {
+        type: String
+
     },
     firstName: {
         type: String,
-        required: true,
-        trim: true,
-        minlength: 2
+
+
     },
     lastName: {
         type: String,
-        required: true,
-        trim: true,
-        minlength: 2
+
     },
     email: {
         type: String,
-        required: true,
-        trim: true,
-        unique: true,
-        minlength: 2
     },
     password: {
         type: String,
-        required: true,
-        trim: true,
-        minlength: 5
+
     },
     address: {
         type: String,
@@ -38,11 +32,9 @@ const AdminSchema = Schema({
     },
     userType: {
         type: String,
-        trim: true
+        default: 'Admin'
     },
-    ExperienceYears: {
-        type: Number
-    },
+
     profilePicture: {
         type: String,
         trim: true

@@ -1,85 +1,90 @@
 <%- include('includes/headers.ejs') %>
-    </head>
+</head>
 
-    <body>
-        <%- include('includes/navigation.ejs') %>
-            </nav>
-            <!-- Header -->
-            <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-                <!-- Mask -->
-                <span class="mask bg-gradient-default opacity-8"></span>
-                <!-- Header container -->
-                <div class="container-fluid d-flex align-items-center">
-                    <div class="row">
-                        <div class="col-lg-7 col-md-10">
-                            <h1 class="display-2 text-white">Start Adding New Users To Iuvo</h1>
-                            <p class="text-white mt-0 mb-5">Quickly add any type of user by filling the information below</p>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    </nav>
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+            <div class="row">
+                <div class="col-lg-7 col-md-10">
+                    <h1 class="display-2 text-white">Start Adding New Users To Iuvo</h1>
+                    <p class="text-white mt-0 mb-5">Quickly add any type of user by filling the information below</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+        <div class="row">
+
+            <div class="col-xl-12 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">Creating a new user</h3>
+                            </div>
 
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Page content -->
-            <div class="container-fluid mt--7">
-                <div class="row">
-
-                    <div class="col-xl-12 order-xl-1">
-                        <div class="card bg-secondary shadow">
-                            <div class="card-header bg-white border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-8">
-                                        <h3 class="mb-0">Creating a new user</h3>
+                    <div class="card-body">
+                        <form action="/admin/createUser" method="POST" enctype="multipart/form-data">
+                            <h6 class="heading-small text-muted mb-4">User information</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Username</label>
+                                            <input min=2 required name='username' type="text" id="input-username" class="form-control form-control-alternative"
+                                                placeholder="Username">
+                                        </div>
                                     </div>
-
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-email">Email address</label>
+                                            <input min=2 required name="email" type="email" id="input-email" class="form-control form-control-alternative"
+                                                placeholder="jesse@example.com">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-first-name">First name</label>
+                                            <input min=2 required name="firstName" type="text" id="input-first-name"
+                                                class="form-control form-control-alternative" placeholder="First name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-last-name">Last name</label>
+                                            <input min=2 required name="lastName" type="text" id="input-last-name"
+                                                class="form-control form-control-alternative" placeholder="Last name">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <form action="/admin/createUser" method="POST" enctype="multipart/form-data">
-                                    <h6 class="heading-small text-muted mb-4">User information</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-username">Username</label>
-                                                    <input min=2 required name='username' type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-email">Email address</label>
-                                                    <input min=2 required name="email" type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-first-name">First name</label>
-                                                    <input min=2 required name="firstName" type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Last name</label>
-                                                    <input min=2 required name="lastName" type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name">
-                                                </div>
-                                            </div>
+                            <hr class="my-4" />
+                            <!-- Address -->
+                            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-address">Address</label>
+                                            <input min=2 required name="address" id="input-address" class="form-control form-control-alternative"
+                                                placeholder="Home Address" type="text">
                                         </div>
                                     </div>
-                                    <hr class="my-4" />
-                                    <!-- Address -->
-                                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-address">Address</label>
-                                                    <input min=2 required name="address" id="input-address" class="form-control form-control-alternative" placeholder="Home Address" type="text">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <!-- <div class="col-lg-4">
+                                </div>
+                                <div class="row">
+                                    <!-- <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-city">City</label>
                                                     <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
@@ -97,133 +102,153 @@
                                                     <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
                                                 </div>
                                             </div> -->
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <!-- More Info -->
+                            <h6 class="heading-small text-muted mb-4">More information</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="userType">Type Of User</label><br />
+
+                                            <div style="border: 1px solid rgb(248, 240, 239); 
+                                                    padding: 10px; margin-bottom: 5px; 
+                                                    border-left: 0px; border-right:0px; 
+                                                    border-top: 0px;">
+
+                                                <input onclick="showOptions()" type="radio" name="userType" value="Caregiver">
+                                                Caregiver
+                                                <br>
+                                                <input onclick="hideOptions()" type="radio" name="userType" value="Customer">
+                                                Customer
+                                                <br>
+                                            </div>
+                                            <div style="border: 1px solid rgb(248, 240, 239); 
+                                                    padding: 10px; margin-bottom: 5px; 
+                                                    border-left: 0px; border-right:0px; 
+                                                    border-top: 0px;">
+                                                <input onclick="hideOptions()" type="radio" name="userType" value="Admin">
+                                                Moderator
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr class="my-4" />
-                                    <!-- More Info -->
-                                    <h6 class="heading-small text-muted mb-4">More information</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="userType">Type Of User</label><br />
-
-                                                    <div style="border: 1px solid rgb(248, 240, 239); 
-                                                    padding: 10px; margin-bottom: 5px; 
-                                                    border-left: 0px; border-right:0px; 
-                                                    border-top: 0px;">
-
-                                                        <input onclick="showOptions()" type="radio" name="userType" value="Caregiver"> Caregiver
-                                                        <br>
-                                                        <input onclick="hideOptions()" type="radio" name="userType" value="Customer"> Customer
-                                                        <br>
-                                                    </div>
-                                                    <div style="border: 1px solid rgb(248, 240, 239); 
-                                                    padding: 10px; margin-bottom: 5px; 
-                                                    border-left: 0px; border-right:0px; 
-                                                    border-top: 0px;">
-                                                        <input onclick="hideOptions()" type="radio" name="userType" value="Admin"> Moderator
-                                                    </div>
-                                                </div>
-                                                <!-- <select required name="userType" id="input-userType" class="form-control form-control-alternative">
+                                        <!-- <select required name="userType" id="input-userType" class="form-control form-control-alternative">
                                                 <option name="Caregiver">Choose an option</option>
                                                 <option name="Caregiver" value="Caregiver">Caregiver</option>
                                                 <option name="Customer" value="Customer">Customer</option>
                                                 <option name="Admin" value="Admin">Admin</option>
                                             </select> -->
 
-                                            </div>
-                                        </div>
-                                        <div style="display: none" id="caregiver_experience" class="row" class='experience'>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-yearsofEXP">Years of
-                                                Experience</label>
-                                                    <input min=0 name="ExperienceYears" type="number" id="input-yearsofEXP" class="form-control form-control-alternative" placeholder="Years of Experience">
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div style="display: none" class="row" id='h_rate'>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-hourRate">$ Rate per hour</label>
-                                                    <input min=15 name="hourRate" type="number" id="input-hourRate" class="form-control form-control-alternative" placeholder="Rate per hour">
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-userImg">Profile Picture</label>
-                                                    <input name="profilePicture" id="input-userImg" class="form-control form-control-alternative" placeholder="Profile Picture" type="file">
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <hr class="my-4" />
-                                    <!-- Description -->
-                                    <h6 class="heading-small text-muted mb-4">About me</h6>
-
-                                    <div class="pl-lg-4">
+                                </div>
+                                <div style="display: none" id="caregiver_experience" class="row" class='experience'>
+                                    <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label>About User</label>
-                                            <textarea min=2 required name="about" rows="4" class="form-control form-control-alternative" placeholder="A few words about the user ..."></textarea>
+                                            <label class="form-control-label" for="input-yearsofEXP">Years of
+                                                Experience</label>
+                                            <input min=0 name="ExperienceYears" type="number" id="input-yearsofEXP"
+                                                class="form-control form-control-alternative" placeholder="Years of Experience">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div style="display: none" class="row" id='h_rate'>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-hourRate">$ Rate per hour</label>
+                                            <input min=15 name="hourRate" type="number" id="input-hourRate" class="form-control form-control-alternative"
+                                                placeholder="Rate per hour">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-dailyWorkHours">Daily work
+                                                hours</label>
+                                            <input min=1 name="hourRate" type="number" id="input-dailyWorkHours" class="form-control form-control-alternative"
+                                                placeholder="Daily work hours">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-userImg">Profile Picture</label>
+                                            <input name="profilePicture" id="input-userImg" class="form-control form-control-alternative"
+                                                placeholder="Profile Picture" type="file">
                                         </div>
                                     </div>
-                                    <!-- Final Step-->
-                                    <h6 class="heading-small text-muted mb-4">Final Step</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div style="display: none" id="categories"> <label class="form-control-label" for="input-Speciality">Speciality</label>
-                                                        <select name="Speciality" id="input-Speciality" class="form-control form-control-alternative">
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <!-- Description -->
+                            <h6 class="heading-small text-muted mb-4">About me</h6>
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label>About User</label>
+                                    <textarea min=2 required name="about" rows="4" class="form-control form-control-alternative"
+                                        placeholder="A few words about the user ..."></textarea>
+                                </div>
+                            </div>
+                            <!-- Final Step-->
+                            <h6 class="heading-small text-muted mb-4">Final Step</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div style="display: none" id="categories"> <label class="form-control-label"
+                                                    for="input-Speciality">Speciality</label>
+                                                <select name="Service" id="input-Service" class="form-control form-control-alternative">
                                                     <option name="">Select Speciality</option>
                                                     <option name="Caregiver" value="Caregiver">Child care</option>
                                                     <option name="Customer" value="Customer">Senior care</option>
                                                     <option name="Admin" value="Admin">Special Needs Care</option>
-                                                </select></div>
-
-
-
-
-
-
-
-
-
-                                                    <label class="form-control-label" for="input-password">Create A Secured
-                                                Password</label>
-                                                    <input min=5 required type="password" name="password" id="input-password" class="form-control form-control-alternative">
-                                                </div>
+                                                </select>
                                             </div>
+                                            <div style="display: none" id="availablity"> <label class="form-control-label"
+                                                    for="input-Availability">Availability</label>
+                                                <select name="Availability" id="input-Availability" class="form-control form-control-alternative">
+                                                    <option name="">Select Availability</option>
+                                                    <option name="Morning" value="Morning">Morning</option>
+                                                    <option name="Afternoon" value="Afternoon">Afternoon</option>
+                                                    <option name="Evening" value="Evening">Evening</option>
+                                                </select>
+                                            </div>
+
+                                            <label class="form-control-label" for="input-password">Create A Secured
+                                                Password</label>
+                                            <input min=5 required type="password" name="password" id="input-password"
+                                                class="form-control form-control-alternative">
                                         </div>
                                     </div>
-                                    <div class="text-right">
-                                        <button class="btn btn-primary">Create user</button>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                            <div class="text-right">
+                                <button class="btn btn-primary">Create user</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <script>
-                    function showOptions() {
-                        document.getElementById("h_rate").style.display = "block";
-                        document.getElementById("categories").style.display = "block";
-                        document.getElementById("caregiver_experience").style.display = "block";
-                    }
+        <script>
+            function showOptions() {
+                document.getElementById("h_rate").style.display = "block";
+                document.getElementById("availablity").style.display = "block";
+                document.getElementById("categories").style.display = "block";
+                document.getElementById("caregiver_experience").style.display = "block";
+            }
 
-                    function hideOptions() {
-                        document.getElementById("h_rate").style.display = "none";
-                        document.getElementById("categories").style.display = "none";
-                        document.getElementById("caregiver_experience").style.display = "none";
-                    }
-                </script>
-                <!-- Footer -->
-                <%- include('includes/end.ejs') %>
+            function hideOptions() {
+                document.getElementById("h_rate").style.display = "none";
+                document.getElementById("availablity").style.display = "none";
+                document.getElementById("categories").style.display = "none";
+                document.getElementById("caregiver_experience").style.display = "none";
+            }
+        </script>
+        <!-- Footer -->
+        <%- include('includes/end.ejs') %>
 
-                    </html>
+        </html>

@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 
+//Authentication Imports
+const isUserAuthenticated = require('../config/ensureIsAuth')
+
 //Model Imports
 const Administrator = require('../models/Admin');
 const Customer = require('../models/Customer');
@@ -20,42 +23,59 @@ router.get('/login', authController.getAdminLogin);
 router.post('/login', authController.postAdminLogin);
 
 
-router.get('/', (req, res, next) => {
+router.get('/', isUserAuthenticated, (req, res, next) => {
     res.render('admin/index', {
+        user: req.user,
         pageTitle: 'IUVO Dashboard',
         path: '/admin/',
-        isAuthenticated: req.isLoggedIn
+
     });
 })
 
-router.get('/requests', (req, res, next) => {
+router.get('/requests', isUserAuthenticated, (req, res, next) => {
     res.render('admin/requests', {
+        user: req.user,
         pageTitle: 'Care Requests',
         path: '/requests/',
-        isAuthenticated: req.isLoggedIn
+
     });
 })
 
 //Customers Data Route
-router.get('/customers', (req, res, next) => {
+router.get('/customers', isUserAuthenticated, (req, res, next) => {
     Customer.find({}).then(customers => {
         res.render('admin/customers', {
+            user: req.user,
             pageTitle: 'Customers',
             customers: customers,
             path: '/customers',
-            isAuthenticated: req.isLoggedIn
+
         })
     })
 
 }); //End of route
 
-router.get('/admins', (req, res, next) => {
+router.get('/history', isUserAuthenticated, (req, res, next) => {
+    Customer.find({}).then(customers => {
+        res.render('admin/sales_history', {
+            user: req.user,
+            pageTitle: 'Sales History',
+            customers: customers,
+            path: '/customers',
+
+        })
+    })
+
+}); //End of route
+
+router.get('/admins', isUserAuthenticated, (req, res, next) => {
     Administrator.find({}).then(admins => {
         res.render('admin/admins', {
+            user: req.user,
             pageTitle: 'Moderators',
             admins: admins,
             path: '/admin',
-            isAuthenticated: req.isLoggedIn
+
 
         })
     })
@@ -64,9 +84,10 @@ router.get('/admins', (req, res, next) => {
 
 
 //Fetch All Care Givers
-router.get('/caregivers', (req, res, next) => {
+router.get('/caregivers', isUserAuthenticated, (req, res, next) => {
     Caregiver.find({}).then(caregiver => {
         res.render('admin/caregivers', {
+            user: req.user,
             pageTitle: 'Local Caregivers',
             caregivers: caregiver,
             path: '/caregivers',
@@ -80,24 +101,24 @@ router.get('/caregivers', (req, res, next) => {
 }) //End of route
 
 
-router.get('/createUser', (req, res, next) => {
+router.get('/createUser', isUserAuthenticated, (req, res, next) => {
 
     res.render('admin/createUser', {
+        user: req.user,
         pageTitle: 'Create a user',
         path: '/createUser',
         isAuthenticated: req.isLoggedIn
     });
 }) //End of route
 
-router.post('/createUser', (req, res, next) => {
+router.post('/createUser', isUserAuthenticated, (req, res, next) => {
     let profileIMG = req.file;
-    console.log(profileIMG);
 
     if (!profileIMG) {
         res.status(422).render('admin/createUser', {
+            user: req.user,
             pageTitle: 'Create a user',
             path: '/createUser',
-            isAuthenticated: req.isLoggedIn
 
         })
     }
@@ -115,7 +136,9 @@ router.post('/createUser', (req, res, next) => {
         ExperienceYears,
         hourRate,
         about,
-        Speciality
+        service,
+        dailyShiftHours,
+        availability
     } = req.body;
 
     if (userType == 'Admin') {
@@ -180,10 +203,14 @@ router.post('/createUser', (req, res, next) => {
             password: password,
             address: address,
             userType: userType,
+            ExperienceYears: ExperienceYears,
             profilePicture: imageURL,
             about: about,
-            Speciality: Speciality,
-            hourRate: hourRate
+            service: service,
+            availability: availability,
+            hourRate: hourRate,
+            dailyShiftHours: dailyShiftHours
+
 
         });
 
@@ -210,16 +237,37 @@ router.post('/createUser', (req, res, next) => {
 }) //End of route
 
 
+//Fetch my Account
+router.get('/profile/', isUserAuthenticated, (req, res, next) => {
+
+    Administrator.findOne({
+        id: req.user._id
+    }).then(admin => {
+        res.render('admin/myAccount', {
+            user: req.user,
+            pageTitle: 'My Account',
+            admin: req.user,
+            path: '/profile',
+
+        });
+
+    }).catch(err => {
+        if (err) throw err;
+    });
+
+});
+
 //Single Admin Profile Route
 
-router.get('/adminProfile/:adminID', (req, res, next) => {
+router.get('/adminProfile/:adminID', isUserAuthenticated, (req, res, next) => {
     const adminID = req.params.adminID
     Administrator.findById(adminID).then(admin => {
         res.render('admin/adminProfile', {
+            user: req.user,
             pageTitle: 'Admin Profile',
             admin: admin,
-            path: '/adminProfile',
-            isAuthenticated: req.isLoggedIn
+            path: '/adminProfile/:adminID',
+
         });
 
     }).catch(err => {
@@ -228,29 +276,15 @@ router.get('/adminProfile/:adminID', (req, res, next) => {
 
 });
 
-//Fetch Single Customer
-router.get('/profile/:customerID', (req, res, next) => {
-    const customerID = req.params.customerID
-    Customer.findById(customerID).then(customer => {
-        res.render('admin/profile', {
-            pageTitle: 'Customer Profile',
-            customer: customer,
-            path: '/profile',
-            isAuthenticated: req.isLoggedIn
-        });
 
-    }).catch(err => {
-        if (err) throw err;
-    });
-
-});
 
 //Fetch Single Caregiver
-router.get('/caregiver/:caregiverId', (req, res, next) => {
+router.get('/caregiver/:caregiverId', isUserAuthenticated, (req, res, next) => {
     const caregiverId = req.params.caregiverId;
 
     Caregiver.findById(caregiverId).then(caregiver => {
         res.render('admin/nurseProfile', {
+            user: req.user,
             pageTitle: 'Caregiver Profile',
             caregiver: caregiver,
             path: '/caregiver'
@@ -261,6 +295,25 @@ router.get('/caregiver/:caregiverId', (req, res, next) => {
 
 
 })
+
+//Fetch Single Customer
+router.get('/profile/:customerID', isUserAuthenticated, (req, res, next) => {
+    const customerID = req.params.customerID
+    Customer.findById(customerID).then(customer => {
+        res.render('admin/profile', {
+            user: req.user,
+            pageTitle: 'Customer Profile',
+            customer: customer,
+            path: '/profile/:customerI',
+
+        });
+
+    }).catch(err => {
+        if (err) throw err;
+    });
+
+});
+
 
 
 module.exports = router;

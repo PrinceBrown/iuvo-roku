@@ -5,6 +5,12 @@ const authController = require('../controllers/auth')
 const usersController = require('../controllers/users')
 
 const Caregiver = require('../models/Caregiver')
+const CareRequest = require('../models/care_request')
+
+//Authentication Imports
+const isUserAuthenticated = require('../config/ensureIsAuth')
+
+
 
 router.get('/register', authController.getRegister)
 
@@ -31,7 +37,61 @@ router.get('/blog/blog-content', (req, res, next) => {
 })
 
 router.get('/request', (req, res, next) => {
-    res.status(200).render('customer/request')
+    const userId = req.user;
+    CareRequest.find({
+            customer: userId
+        }).select('caregiver workHours subTotal shift')
+        .populate('caregiver')
+        .populate('customer')
+        .then(careRequestOrderList => {
+            if (careRequestOrderList) {
+                console.log(careRequestOrderList)
+                //User was found and there was an order made
+                res.status(200).render('customer/request')
+            } else {
+                //The user Id was invalid
+                //Return to home
+
+                res.status(302).redirect('/')
+            }
+        }).catch(err => {
+            if (err) throw err;
+        })
+
+})
+
+router.post('/request-care/:caregiverID', (req, res, next) => {
+    const requestId = req.params.caregiverID;
+    const {
+        hoursOfCare
+    } = req.body;
+
+    Caregiver.findById(requestId).then(caregiver_exists => {
+
+        if (caregiver_exists) {
+
+            //Create new order
+            const careRequest = new CareRequest({
+                caregiver: requestId,
+                customer: req.user,
+                workHours: hoursOfCare,
+                subTotal: caregiver_exists.hourRate * hoursOfCare
+            })
+            careRequest.save().then(careOrderSuccess => {
+                console.log('Added to request cart')
+                res.status(302).redirect('/request')
+            }).catch(err => {
+                if (err) throw err;
+            })
+        } else {
+            //Caregiver doesn't exists
+            //Go back to caregiver list page
+            return res.redirect('/caregiver-list')
+        }
+    }).catch(err => {
+        if (err) throw err;
+    })
+
 })
 
 router.get('/aboutUs', (req, res, next) => {
@@ -42,7 +102,7 @@ router.get('/aboutUs', (req, res, next) => {
 router.get('/', (req, res, next) => {
 
     Caregiver.find({}).then(showCaregivers => {
-        console.log('Show:', showCaregivers)
+
         res.status(200).render('customer/index', {
             caregivers: showCaregivers
         })

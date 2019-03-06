@@ -7,6 +7,9 @@ const CustomerSchema = Schema({
         trim: true,
         minlength: 2
     },
+    googleId: {
+        type: String,
+    },
     firstName: {
         type: String,
         required: true,
@@ -20,17 +23,10 @@ const CustomerSchema = Schema({
         minlength: 2
     },
     email: {
-        type: String,
-        required: true,
-        trim: true,
-        unique: true,
-        minlength: 2
+        type: String
     },
     password: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 5
+        type: String
     },
     address: {
         type: String,

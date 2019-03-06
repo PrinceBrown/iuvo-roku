@@ -21,6 +21,7 @@ exports.getEditCustomerProfile = (req, res, next) => {
 
 exports.getCaregiverList = (req, res, next) => {
     Caregiver.find({}).then(allCaregivers => {
+
         res.status(200).render('customer/caregiver-list', {
             caregivers: allCaregivers
         })

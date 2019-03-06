@@ -71,7 +71,7 @@ const CaregiverSchema = Schema({
         type: String,
         trim: true
     },
-    dailyHours: {
+    dailyShiftHours: {
         type: Number,
         trim: true
     }
