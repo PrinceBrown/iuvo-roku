@@ -28,7 +28,12 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
     Admin.findById(id).then(user => {
-        done(null, user)
+        if(user) return done(null, user);
+        Customer.findById(id).then(user => {
+            done(null, user);
+        }).catch(err => {
+            if (err) throw err;
+        })
     }).catch(err => {
         if (err) throw err;
     })
@@ -78,7 +83,7 @@ router.get('/customer/auth/google', passport.authenticate('google-alt', {
 
 router.get('/customer/auth/google/redirect', passport.authenticate('google-alt'),
     (req, res, next) => {
-        console.log(req.user)
+        console.log('Customer', req.user)
         res.redirect('/')
     })
 
