@@ -20,6 +20,16 @@ router.get('/login', authController.getLogin)
 
 router.post('/customer/login', authController.postLogin)
 
+
+router.use(isUserAuthenticated, function(req, res, next) {
+    if (req.user.userType === 'Admin' || req.user.userType === 'customer') {
+        console.log('Customer here');
+        return next();
+    } else {
+        return res.redirect('/');
+    }
+})
+
 //This route must be removed or the page must be modified
 //This route renders caregiver options to customer which shouldnot be there
 router.get('/caregiver-profile/:caregiverID', usersController.getCaregiverProfile)
