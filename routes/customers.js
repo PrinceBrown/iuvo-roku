@@ -21,7 +21,7 @@ router.get('/login', authController.getLogin)
 router.post('/customer/login', authController.postLogin)
 
 
-router.use(isUserAuthenticated, function(req, res, next) {
+router.use(isUserAuthenticated, function (req, res, next) {
     if (req.user.userType === 'Admin' || req.user.userType === 'customer') {
         console.log('Customer here');
         return next();
@@ -47,7 +47,8 @@ router.get('/blog/blog-content', (req, res, next) => {
 })
 
 router.get('/request', (req, res, next) => {
-    const userId = req.user;
+    const userId = req.user.id;
+    console.log(userId)
     CareRequest.find({
             customer: userId
         }).select('caregiver workHours subTotal shift')
@@ -57,7 +58,9 @@ router.get('/request', (req, res, next) => {
             if (careRequestOrderList) {
                 console.log(careRequestOrderList)
                 //User was found and there was an order made
-                res.status(200).render('customer/request')
+                res.status(200).render('customer/request', {
+                    cart: careRequestOrderList
+                })
             } else {
                 //The user Id was invalid
                 //Return to home
@@ -112,10 +115,21 @@ router.get('/aboutUs', (req, res, next) => {
 router.get('/', (req, res, next) => {
 
     Caregiver.find({}).then(showCaregivers => {
-
-        res.status(200).render('customer/index', {
-            caregivers: showCaregivers
-        })
+        CareRequest.find({
+                customer: req.user.id
+            })
+            .select('caregiver, customer, workHours, subTotal')
+            .populate('caregiver', 'firstName hourRate service profilePicture about')
+            .populate('customer', 'firstName about')
+            .then(orders => {
+                console.log()
+                res.status(200).render('customer/index', {
+                    caregivers: showCaregivers,
+                    pendingRequest: orders.length
+                })
+            }).catch(err => {
+                if (err) throw err;
+            })
     }).catch(err => {
         if (err) throw err;
     })
